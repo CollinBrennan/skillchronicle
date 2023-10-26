@@ -24,25 +24,44 @@ export const SkillLogTable = ({ logs }: SkillLogTableProps) => {
   }
 
   return (
-    <table className="">
-      <tr className="">
-        <th className="bg-slate-300 text-left px-8 py-2">Date</th>
-        <th className="bg-slate-300 text-left px-8 py-2">Skill</th>
-        <th className="bg-slate-300 text-left px-8 py-2">Time</th>
-        <th className="bg-slate-300 text-left px-8 py-2">Notes</th>
-      </tr>
-      {logs.map((log) => (
-        <tr>
-          <td className="bg-slate-100 text-left px-8 py-2">
-            {formatDate(log.createdAt)}
-          </td>
-          <td className="bg-slate-100 text-left px-8 py-2">{log.skill}</td>
-          <td className="bg-slate-100 text-left px-8 py-2">
-            {formatTime(log.hours, log.minutes)}
-          </td>
-          <td className="bg-slate-100 text-left px-8 py-2">{log.notes}</td>
+    <table className="table-fixed w-full">
+      <thead>
+        <tr className="">
+          <th className="bg-zinc-300 text-left px-2 py-2">Date</th>
+          <th className="bg-zinc-300 text-left px-2 py-2">Skill</th>
+          <th className="bg-zinc-300 text-left px-2 py-2 w-16">Time</th>
         </tr>
-      ))}
+      </thead>
+      <tbody>
+        {logs.map((log) => (
+          <>
+            <tr>
+              <td className="bg-zinc-100 text-left px-2 py-2">
+                {formatDate(log.createdAt)}
+              </td>
+              <td className="bg-zinc-100 text-left px-2 py-2 truncate">
+                {log.skill}
+              </td>
+              <td className="bg-zinc-100 text-left px-2 py-2">
+                {formatTime(log.hours, log.minutes)}
+              </td>
+            </tr>
+            <tr>
+              <th colSpan={3} className="bg-zinc-300 text-left px-2 py-2">
+                Notes
+              </th>
+            </tr>
+            <tr>
+              <td
+                colSpan={3}
+                className="bg-zinc-100 text-left px-2 py-2 truncate"
+              >
+                {log.skill + 'difjhkldsffjlasdflasd;fjldsfjl;sda'}
+              </td>
+            </tr>
+          </>
+        ))}
+      </tbody>
     </table>
   )
 }

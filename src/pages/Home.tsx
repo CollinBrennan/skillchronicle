@@ -31,7 +31,9 @@ export const Home = () => {
           Log Skill
         </button>
         <LogSkillModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
-        <SkillLogTable logs={(logs as SkillLog[]) || []} />
+        <div className="mx-4">
+          <SkillLogTable logs={(logs as SkillLog[]) || []} />
+        </div>
       </div>
     </div>
   )

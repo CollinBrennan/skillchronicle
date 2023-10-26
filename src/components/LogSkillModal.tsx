@@ -15,23 +15,22 @@ export const LogSkillModal = ({ isOpen, setIsOpen }: any) => {
 
   return (
     <Dialog open={isOpen} onClose={handleCloseModal} className="relative z-50">
-      {/* The backdrop, rendered as a fixed sibling to the panel container */}
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
 
-      {/* Full-screen container to center the panel */}
-      <div className="fixed inset-0 flex items-center justify-center p-4">
-        <Dialog.Panel className="bg-white">
-          <div className="flex flex-row items-center pt-4 text-left">
-            <Dialog.Title className="px-4 text-2xl font-bold">
+      <div className="fixed inset-0 flex flex-col items-center justify-center">
+        <Dialog.Panel className="bg-white p-6">
+          <div className="flex flex-row-reverse ">
+            <XMarkIcon onClick={handleCloseModal} className="h-6" />
+          </div>
+          <div className="grid grid-rows-2 mb-4">
+            <Dialog.Title className="text-2xl font-bold">
               Log Skill
             </Dialog.Title>
-            <div className="mb-1 text-sm">{getDate()}</div>
-            <CalendarIcon className="mb-1 ml-4 h-5 text-zinc-500" />
-            <button className="pl-24 pr-4">
-              <XMarkIcon onClick={handleCloseModal} className="h-6" />
-            </button>
+            <div className="flex flex-row gap-4">
+              <div>{getDate()}</div>
+              <CalendarIcon className="h-5 text-zinc-500" />
+            </div>
           </div>
-
           <LogSkillForm closeModalFunction={handleCloseModal} />
         </Dialog.Panel>
       </div>
