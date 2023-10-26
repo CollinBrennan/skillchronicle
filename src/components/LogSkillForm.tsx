@@ -23,16 +23,16 @@ export const LogSkillForm = ({ closeModalFunction }: LogSkillFormProps) => {
     skill: yup.string().required('Skill name required.'),
     hours: yup
       .number()
-      .integer()
-      .min(0)
-      .max(99)
-      .transform((value) => (Number.isNaN(value) ? 0 : value)),
+      .typeError('Hours must be a number')
+      .integer('Hours must be an integer')
+      .min(0, 'Hours must be 0 or greater')
+      .max(99, 'Hours must be 99 or less'),
     minutes: yup
       .number()
-      .integer()
-      .min(0)
-      .max(59)
-      .transform((value) => (Number.isNaN(value) ? 0 : value)),
+      .typeError('Minutes must be a number')
+      .integer('Minutes must be an integer')
+      .min(0, 'Minutes must be 0 or greater')
+      .max(59, 'Minutes must be 59 or less'),
     notes: yup.string(),
   })
 
@@ -59,24 +59,29 @@ export const LogSkillForm = ({ closeModalFunction }: LogSkillFormProps) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onLogSkill)} className="flex flex-col p-4">
-      <p className="text-small">Create a skill category to start logging</p>
+    <form onSubmit={handleSubmit(onLogSkill)} className="">
+      <p className="mb-1">Create a skill category to start logging</p>
       <input
-        className="p-2 border-2 border-black"
-        placeholder="Skill"
+        className="border-2 border-black py-1 px-2 w-full"
+        placeholder="ex. Skateboarding"
         {...register('skill')}
       />
       <p className="text-red-500">{errors.skill?.message}</p>
+      <input
+        className="bg-zinc-300 px-6 py-2 mb-8 mt-4 rounded hover:cursor-pointer"
+        type="button"
+        value="Add skill"
+      />
 
-      <p className="text-small pt-8">How long did you work on this skill?</p>
-      <div className="flex flex-row space-x-4">
+      <p className="mb-1">How long did you work on this skill?</p>
+      <div className="flex flex-row gap-2">
         <input
-          className="p-2 border-2 border-black"
+          className="w-24 border-2 border-black py-1 px-2"
           placeholder="X Hours"
           {...register('hours')}
         />
         <input
-          className="p-2 border-2 border-black"
+          className="w-24 border-2 border-black py-1 px-2"
           placeholder="X Minutes"
           {...register('minutes')}
         />
@@ -84,14 +89,14 @@ export const LogSkillForm = ({ closeModalFunction }: LogSkillFormProps) => {
       <p className="text-red-500">{errors.hours?.message}</p>
       <p className="text-red-500">{errors.minutes?.message}</p>
 
-      <p className="text-small pt-8">Notes about the session</p>
+      <p className="mt-8 mb-1">Notes about the session</p>
       <input
-        className="p-2 border-2 border-black"
-        placeholder="Notes"
+        className="border-2 border-black py-1 px-2 w-full"
+        placeholder="ex. I felt really good abouit this today."
         {...register('notes')}
       />
 
-      <div className="pt-4">
+      <div className="mt-8">
         <input
           className="bg-zinc-300 px-6 py-2 rounded hover:cursor-pointer"
           type="submit"
