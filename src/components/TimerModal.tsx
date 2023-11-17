@@ -93,7 +93,7 @@ const TimerModal = ({
             </div>
           </div>
 
-          <div className="flex mt-16 flex-row justify-center">
+          <div className="flex mt-4 flex-row justify-center">
             {!hasStarted ? (
               <button
                 onClick={startTimer}
