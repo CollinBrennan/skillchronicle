@@ -7,6 +7,7 @@ import { SkillLog, LogTable } from '../components/LogTable'
 import { collection, orderBy, query, where } from 'firebase/firestore'
 import { db } from '../config/firebase'
 import TimerModal from '../components/TimerModal'
+import SkillFrequencyChart from '../components/SkillFrequencyChart'
 
 export const Home = () => {
   const [isLogModalOpen, setIsLogModalOpen] = useState(false)
@@ -39,6 +40,7 @@ export const Home = () => {
             Start skill timer
           </button>
         </div>
+        <SkillFrequencyChart />
         <LogModal
           isOpen={isLogModalOpen}
           setIsOpen={setIsLogModalOpen}
