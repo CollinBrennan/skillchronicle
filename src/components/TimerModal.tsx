@@ -117,7 +117,7 @@ const TimerModal = ({
                     className="bg-zinc-600 text-white px-6 py-2 flex gap-2 rounded"
                   >
                     <PlayCircleIcon className="h-6 w-6" />
-                    Resume timer
+                    Resume
                   </button>
                 ) : (
                   <button
@@ -125,7 +125,7 @@ const TimerModal = ({
                     className="bg-zinc-300 px-6 py-2 flex gap-2 rounded"
                   >
                     <PauseCircleIcon className="h-6 w-6" />
-                    Pause timer
+                    Pause
                   </button>
                 )}
               </div>

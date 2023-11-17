@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="360mm"
+   height="360mm"
+   viewBox="0 0 360 360"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   sodipodi:docname="skillchronicle.svg"
+   inkscape:export-filename="skillchronicle.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm" /><defs
+     id="defs1" /><g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"><g
+       style="fill:none"
+       id="g1"
+       transform="matrix(0.20445728,0,0,0.21324502,156.28337,214.13318)"><rect
+         style="fill:#f9f9f9;stroke-width:0.403839"
+         id="rect2"
+         width="360"
+         height="360"
+         x="0"
+         y="0"
+         ry="80.566574"
+         transform="matrix(4.8909973,0,0,4.6894413,-764.38154,-1004.165)" /><path
+         d="m -337.23982,520.24944 c -83.32198,0 -133.68188,-52.1934 -133.68188,-139.17727 V 3.018718 c 0,-86.98647 50.3599,-140.091478 133.68188,-140.091478 82.40783,0 133.6819,53.105008 133.6819,140.091478 V 381.07217 c 0,86.98387 -51.27407,139.17727 -133.6819,139.17727 z"
+         fill="#1f6feb"
+         id="path3"
+         style="stroke-width:26.0447" /><path
+         d="m 115.09034,520.24944 c -77.847405,0 -133.687097,-47.61476 -133.687097,-139.17727 V -360.5904 c 0,-91.56251 55.839692,-140.09147 133.687097,-140.09147 78.73292,0 133.68709,48.52896 133.68709,140.09147 v 741.66257 c 0,91.56251 -54.95417,139.17727 -133.68709,139.17727 z"
+         fill="#7ed321"
+         id="path4"
+         style="stroke-width:26.0447" /><path
+         d="m 569.23058,520.24944 c -77.82136,0 -133.6871,-47.61476 -133.6871,-139.17727 V -700.28872 c 0,-91.56329 55.86574,-140.09178 133.6871,-140.09178 78.75896,0 133.68706,48.52849 133.68706,140.09178 V 381.07217 c 0,91.56251 -54.9281,139.17727 -133.68706,139.17727 z"
+         fill="#ff6b6b"
+         id="path5"
+         style="stroke-width:26.0447" /></g></g></svg>
