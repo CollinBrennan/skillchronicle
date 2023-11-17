@@ -12,11 +12,11 @@ interface FormData {
   notes?: string
 }
 
-interface LogSkillFormProps {
+interface LogFormProps {
   closeModalFunction: any
 }
 
-export const LogSkillForm = ({ closeModalFunction }: LogSkillFormProps) => {
+export const LogForm = ({ closeModalFunction }: LogFormProps) => {
   const [user] = useAuthState(auth)
 
   const schema = yup.object().shape({
@@ -59,44 +59,39 @@ export const LogSkillForm = ({ closeModalFunction }: LogSkillFormProps) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleLogSkill)} className="">
+    <form onSubmit={handleSubmit(handleLogSkill)}>
       <p className="mb-1">Create a skill category to start logging</p>
       <input
-        className="border-2 border-black py-1 px-2 w-full"
+        className="border-2 border-black py-1 px-2 max-w-sm w-full"
         placeholder="ex. Skateboarding"
         {...register('skill')}
       />
       <p className="text-red-500">{errors.skill?.message}</p>
-      <input
-        className="bg-zinc-300 px-6 py-2 mb-8 mt-4 rounded hover:cursor-pointer"
-        type="button"
-        value="Add skill"
-      />
 
-      <p className="mb-1">How long did you work on this skill?</p>
+      <p className="mt-10 mb-1">How long did you work on this skill?</p>
       <div className="flex flex-row gap-2">
         <input
           className="w-24 border-2 border-black py-1 px-2"
-          placeholder="X Hours"
+          placeholder="1 Hour"
           {...register('hours')}
         />
         <input
           className="w-24 border-2 border-black py-1 px-2"
-          placeholder="X Minutes"
+          placeholder="2 Minutes"
           {...register('minutes')}
         />
       </div>
       <p className="text-red-500">{errors.hours?.message}</p>
       <p className="text-red-500">{errors.minutes?.message}</p>
 
-      <p className="mt-8 mb-1">Notes about the session</p>
+      <p className="mt-10 mb-1">Notes about the session</p>
       <input
         className="border-2 border-black py-1 px-2 w-full"
         placeholder="ex. I felt really good about this today."
         {...register('notes')}
       />
 
-      <div className="mt-8">
+      <div className="mt-16">
         <input
           className="bg-zinc-300 px-6 py-2 rounded hover:cursor-pointer"
           type="submit"

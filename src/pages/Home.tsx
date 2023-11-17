@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
-import LogSkillModal from '../components/LogSkillModal'
+import { useState } from 'react'
+import LogModal from '../components/LogModal'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { auth } from '../config/firebase'
-import { SkillLog, SkillLogTable } from '../components/SkillLogTable'
+import { SkillLog, LogTable } from '../components/LogTable'
 import { collection, orderBy, query, where } from 'firebase/firestore'
 import { db } from '../config/firebase'
 import TimerModal from '../components/TimerModal'
@@ -23,7 +23,7 @@ export const Home = () => {
 
   return (
     <div className="flex justify-center font-inter">
-      <div className="max-w-7xl mx-4">
+      <div className="max-w-screen-xl mx-4">
         <div className="flex flex-row gap-4 mt-16 mb-8">
           <button
             onClick={() => setIsLogModalOpen(true)}
@@ -38,9 +38,9 @@ export const Home = () => {
             Start skill timer
           </button>
         </div>
-        <LogSkillModal isOpen={isLogModalOpen} setIsOpen={setIsLogModalOpen} />
+        <LogModal isOpen={isLogModalOpen} setIsOpen={setIsLogModalOpen} />
         <TimerModal isOpen={isTimerModalOpen} setIsOpen={setIsTimerModalOpen} />
-        <SkillLogTable logs={(logs as SkillLog[]) || []} />
+        <LogTable logs={(logs as SkillLog[]) || []} />
       </div>
     </div>
   )

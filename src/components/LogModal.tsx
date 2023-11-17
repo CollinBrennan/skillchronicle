@@ -1,9 +1,9 @@
 import { Dialog } from '@headlessui/react'
 import { CalendarIcon, XMarkIcon } from '@heroicons/react/24/solid'
-import { LogSkillForm } from './LogSkillForm'
+import { LogForm } from './LogForm'
 import dayjs from 'dayjs'
 
-const LogSkillModal = ({ isOpen, setIsOpen }: any) => {
+const LogModal = ({ isOpen, setIsOpen }: any) => {
   function handleCloseModal() {
     setIsOpen(false)
   }
@@ -17,13 +17,16 @@ const LogSkillModal = ({ isOpen, setIsOpen }: any) => {
     <Dialog open={isOpen} onClose={handleCloseModal} className="relative z-50">
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
 
-      <div className="fixed inset-0 flex flex-col items-center justify-center">
-        <Dialog.Panel className="bg-white p-6">
+      <div className="fixed inset-0 flex flex-col mx-2 items-center justify-center">
+        <Dialog.Panel className="bg-white p-6 w-full max-w-2xl">
           <div className="flex flex-row-reverse ">
-            <XMarkIcon onClick={handleCloseModal} className="h-6" />
+            <XMarkIcon
+              onClick={handleCloseModal}
+              className="h-6 cursor-pointer"
+            />
           </div>
-          <div className="grid grid-rows-2 mb-4">
-            <Dialog.Title className="text-2xl font-bold">
+          <div className="flex flex-col sm:gap-x-4 sm:flex-row sm:items-end mb-10">
+            <Dialog.Title className="text-4xl font-bold">
               Log Skill
             </Dialog.Title>
             <div className="flex flex-row gap-4">
@@ -31,11 +34,11 @@ const LogSkillModal = ({ isOpen, setIsOpen }: any) => {
               <CalendarIcon className="h-5 text-zinc-500" />
             </div>
           </div>
-          <LogSkillForm closeModalFunction={handleCloseModal} />
+          <LogForm closeModalFunction={handleCloseModal} />
         </Dialog.Panel>
       </div>
     </Dialog>
   )
 }
 
-export default LogSkillModal
+export default LogModal

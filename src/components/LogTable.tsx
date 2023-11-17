@@ -9,11 +9,11 @@ export interface SkillLog {
   notes: string
 }
 
-interface SkillLogTableProps {
+interface LogTableProps {
   logs: SkillLog[]
 }
 
-export const SkillLogTable = ({ logs }: SkillLogTableProps) => {
+export const LogTable = ({ logs }: LogTableProps) => {
   function formatTime(hours: number, minutes: number) {
     const formattedMinutes = minutes < 10 ? '0' + minutes.toString() : minutes
     return `${hours}:${formattedMinutes}`

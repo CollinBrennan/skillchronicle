@@ -39,16 +39,19 @@ const TimerModal = ({ isOpen, setIsOpen }: any) => {
     <Dialog open={isOpen} onClose={handleCloseModal} className="relative z-50">
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
 
-      <div className="fixed inset-0 flex flex-col items-center justify-center">
-        <Dialog.Panel className="bg-white p-6">
+      <div className="fixed inset-0 flex flex-col mx-2 items-center justify-center">
+        <Dialog.Panel className="bg-white p-6 w-full max-w-2xl">
           <div className="flex flex-row-reverse ">
-            <XMarkIcon onClick={handleCloseModal} className="h-6" />
+            <XMarkIcon
+              onClick={handleCloseModal}
+              className="h-6 cursor-pointer"
+            />
           </div>
-          <Dialog.Title className="text-3xl font-bold text-center">
+          <Dialog.Title className="text-4xl font-bold text-center">
             Skill Timer
           </Dialog.Title>
 
-          <div className="flex py-8 flex-row gap-2 justify-center font-bold text-5xl text-center">
+          <div className="flex py-8 flex-row gap-2 justify-center font-bold text-7xl text-center">
             <div>
               <div>{(hours < 10 ? '0' : '') + hours}</div>
               <div className="text-base font-normal">hours</div>
