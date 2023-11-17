@@ -3,7 +3,7 @@ import { CalendarIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { LogSkillForm } from './LogSkillForm'
 import dayjs from 'dayjs'
 
-export const LogSkillModal = ({ isOpen, setIsOpen }: any) => {
+const LogSkillModal = ({ isOpen, setIsOpen }: any) => {
   function handleCloseModal() {
     setIsOpen(false)
   }
@@ -37,3 +37,5 @@ export const LogSkillModal = ({ isOpen, setIsOpen }: any) => {
     </Dialog>
   )
 }
+
+export default LogSkillModal

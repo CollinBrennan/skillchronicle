@@ -44,7 +44,7 @@ export const LogSkillForm = ({ closeModalFunction }: LogSkillFormProps) => {
     resolver: yupResolver(schema),
   })
 
-  const onLogSkill = async (data: FormData) => {
+  const handleLogSkill = async (data: FormData) => {
     if (user) {
       await addDoc(collection(db, 'logs'), {
         skill: data.skill,
@@ -59,7 +59,7 @@ export const LogSkillForm = ({ closeModalFunction }: LogSkillFormProps) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onLogSkill)} className="">
+    <form onSubmit={handleSubmit(handleLogSkill)} className="">
       <p className="mb-1">Create a skill category to start logging</p>
       <input
         className="border-2 border-black py-1 px-2 w-full"
@@ -92,7 +92,7 @@ export const LogSkillForm = ({ closeModalFunction }: LogSkillFormProps) => {
       <p className="mt-8 mb-1">Notes about the session</p>
       <input
         className="border-2 border-black py-1 px-2 w-full"
-        placeholder="ex. I felt really good abouit this today."
+        placeholder="ex. I felt really good about this today."
         {...register('notes')}
       />
 

@@ -29,7 +29,10 @@ export const SkillLogTable = ({ logs }: SkillLogTableProps) => {
         <tr className="">
           <th className="bg-zinc-300 text-left px-2 py-2">Date</th>
           <th className="bg-zinc-300 text-left px-2 py-2">Skill</th>
-          <th className="bg-zinc-300 text-left px-2 py-2 w-16">Time</th>
+          <th className="bg-zinc-300 text-left px-2 py-2">Time</th>
+          <th className="bg-zinc-300 text-left px-2 py-2 hidden md:table-cell">
+            Notes
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -45,18 +48,8 @@ export const SkillLogTable = ({ logs }: SkillLogTableProps) => {
               <td className="bg-zinc-100 text-left px-2 py-2">
                 {formatTime(log.hours, log.minutes)}
               </td>
-            </tr>
-            <tr>
-              <th colSpan={3} className="bg-zinc-300 text-left px-2 py-2">
-                Notes
-              </th>
-            </tr>
-            <tr>
-              <td
-                colSpan={3}
-                className="bg-zinc-100 text-left px-2 py-2 truncate"
-              >
-                {log.skill + 'difjhkldsffjlasdflasd;fjldsfjl;sda'}
+              <td className="bg-zinc-100 text-left px-2 py-2 truncate hidden md:table-cell">
+                {log.notes}
               </td>
             </tr>
           </>
