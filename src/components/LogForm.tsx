@@ -14,10 +14,16 @@ interface FormData {
 
 interface LogFormProps {
   closeModalFunction: any
+  secondsFromTimer: number
 }
 
-export const LogForm = ({ closeModalFunction }: LogFormProps) => {
+export const LogForm = ({
+  closeModalFunction,
+  secondsFromTimer,
+}: LogFormProps) => {
   const [user] = useAuthState(auth)
+  const hours = Math.floor(secondsFromTimer / 3600)
+  const minutes = Math.floor((secondsFromTimer - hours * 3600) / 60) % 60
 
   const schema = yup.object().shape({
     skill: yup.string().required('Skill name required.'),
@@ -73,11 +79,13 @@ export const LogForm = ({ closeModalFunction }: LogFormProps) => {
         <input
           className="w-24 border-2 border-black py-1 px-2"
           placeholder="1 Hour"
+          value={secondsFromTimer > 0 ? hours : undefined}
           {...register('hours')}
         />
         <input
           className="w-24 border-2 border-black py-1 px-2"
           placeholder="2 Minutes"
+          value={secondsFromTimer > 0 ? minutes : undefined}
           {...register('minutes')}
         />
       </div>

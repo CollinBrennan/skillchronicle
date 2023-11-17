@@ -11,6 +11,7 @@ import TimerModal from '../components/TimerModal'
 export const Home = () => {
   const [isLogModalOpen, setIsLogModalOpen] = useState(false)
   const [isTimerModalOpen, setIsTimerModalOpen] = useState(false)
+  const [secondsFromTimer, setSecondsFromTimer] = useState(0)
   const [user] = useAuthState(auth)
 
   const logsRef = collection(db, 'logs')
@@ -38,8 +39,18 @@ export const Home = () => {
             Start skill timer
           </button>
         </div>
-        <LogModal isOpen={isLogModalOpen} setIsOpen={setIsLogModalOpen} />
-        <TimerModal isOpen={isTimerModalOpen} setIsOpen={setIsTimerModalOpen} />
+        <LogModal
+          isOpen={isLogModalOpen}
+          setIsOpen={setIsLogModalOpen}
+          secondsFromTimer={secondsFromTimer}
+          setSecondsFromTimer={setSecondsFromTimer}
+        />
+        <TimerModal
+          isOpen={isTimerModalOpen}
+          setIsOpen={setIsTimerModalOpen}
+          setSecondsFromTimer={setSecondsFromTimer}
+          openLogModal={() => setIsLogModalOpen(true)}
+        />
         <LogTable logs={(logs as SkillLog[]) || []} />
       </div>
     </div>
