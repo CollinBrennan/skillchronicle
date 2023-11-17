@@ -25,8 +25,7 @@ const TimerModal = ({
   const [hasStarted, setHasStarted] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const interval = useRef<TimerInterval>(null)
-
-  const [totalSeconds, setTotalSeconds] = useState(60)
+  const [totalSeconds, setTotalSeconds] = useState(0)
   var hours = Math.floor(totalSeconds / 3600)
   var minutes = Math.floor((totalSeconds - hours * 3600) / 60) % 60
   var seconds = totalSeconds % 60
@@ -94,7 +93,7 @@ const TimerModal = ({
             </div>
           </div>
 
-          <div className="flex flex-row justify-center">
+          <div className="flex mt-16 flex-row justify-center">
             {!hasStarted ? (
               <button
                 onClick={startTimer}
