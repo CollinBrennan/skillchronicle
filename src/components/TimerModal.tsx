@@ -1,5 +1,10 @@
 import { Dialog } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/solid'
+import {
+  PauseCircleIcon,
+  PlayCircleIcon,
+  StopCircleIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/solid'
 import { useRef, useState } from 'react'
 
 type TimerInterval = NodeJS.Timeout | null
@@ -72,25 +77,31 @@ const TimerModal = ({ isOpen, setIsOpen }: any) => {
             {!hasStarted ? (
               <button
                 onClick={startTimer}
-                className="bg-zinc-300 px-6 py-2 rounded"
+                className="bg-zinc-300 px-6 py-2 flex gap-2 rounded"
               >
+                <PlayCircleIcon className="h-6 w-6" />
                 Start timer
               </button>
             ) : (
               <div className="flex flex-row gap-2">
-                <button className="bg-zinc-300 px-6 py-2 rounded">Stop</button>
+                <button className="bg-zinc-300 px-6 py-2 flex gap-2 rounded">
+                  <StopCircleIcon className="h-6 w-6" />
+                  Stop
+                </button>
                 {isPaused ? (
                   <button
                     onClick={startTimer}
-                    className="text-white rounded bg-zinc-600 px-6 py-2 rounded`"
+                    className="bg-zinc-600 text-white px-6 py-2 flex gap-2 rounded"
                   >
+                    <PlayCircleIcon className="h-6 w-6" />
                     Resume timer
                   </button>
                 ) : (
                   <button
                     onClick={stopTimer}
-                    className="bg-zinc-300 rounded px-6 py-2 rounded`"
+                    className="bg-zinc-300 px-6 py-2 flex gap-2 rounded"
                   >
+                    <PauseCircleIcon className="h-6 w-6" />
                     Pause timer
                   </button>
                 )}
