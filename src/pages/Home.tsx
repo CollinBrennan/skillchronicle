@@ -40,7 +40,7 @@ export const Home = () => {
             Start skill timer
           </button>
         </div>
-        <SkillFrequencyChart />
+        <SkillFrequencyChart logs={logs} />
         <LogModal
           isOpen={isLogModalOpen}
           setIsOpen={setIsLogModalOpen}

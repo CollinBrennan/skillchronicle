@@ -1,23 +1,39 @@
 import { Bar } from 'react-chartjs-2'
 import 'chart.js/auto'
+import { DocumentData } from 'firebase/firestore'
 import { ChartData } from 'chart.js'
 
-const data: ChartData<'bar'> = {
-  labels: ['Skill', 'Skill', 'Skill'],
+function createChartDataFromLogs(
+  logs: DocumentData[] | undefined
+): ChartData<'bar'> {
+  const chartData = {
+    labels: [] as string[],
+    datasets: [{ data: [] as number[] }],
+  }
 
-  datasets: [
-    {
-      data: [1, 15, 10, 20],
-    },
-  ],
+  logs?.forEach((log) => {
+    if (chartData.labels.includes(log.skill)) {
+      const indexOfSkill = chartData.labels.indexOf(log.skill)
+      chartData.datasets[0].data[indexOfSkill] += 1
+    } else {
+      chartData.labels.push(log.skill)
+      chartData.datasets[0].data.push(1)
+    }
+  })
+
+  return chartData as ChartData<'bar'>
 }
 
-const SkillFrequencyChart = () => {
+type SkillFrequencyChartProps = {
+  logs: DocumentData[] | undefined
+}
+
+const SkillFrequencyChart = ({ logs }: SkillFrequencyChartProps) => {
   return (
     <div className="w-ful flex justify-center bg-zinc-100 py-8 my-8">
       <div className="w-[99%]">
         <Bar
-          data={data}
+          data={createChartDataFromLogs(logs)}
           options={{
             plugins: { legend: { display: false } },
             scales: {
