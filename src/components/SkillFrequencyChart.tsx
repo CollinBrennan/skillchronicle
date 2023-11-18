@@ -3,11 +3,11 @@ import 'chart.js/auto'
 import { ChartData } from 'chart.js'
 
 const data: ChartData<'bar'> = {
-  labels: [10, 20, 30],
+  labels: ['Skill', 'Skill', 'Skill'],
+
   datasets: [
     {
-      label: 'Hello!',
-      data: [100, 400, 300],
+      data: [1, 15, 10, 20],
     },
   ],
 }
@@ -19,6 +19,11 @@ const SkillFrequencyChart = () => {
         <Bar
           data={data}
           options={{
+            plugins: { legend: { display: false } },
+            scales: {
+              x: { border: { display: false }, grid: { display: false } },
+              y: { border: { display: false }, grid: { display: false } },
+            },
             indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false,
