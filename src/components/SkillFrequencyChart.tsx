@@ -9,7 +9,13 @@ function createChartDataFromLogs(
 ): ChartData<'bar'> {
   const chartData = {
     labels: [] as string[],
-    datasets: [{ label: 'hours', data: [] as number[] }],
+    datasets: [
+      {
+        label: 'hours',
+        data: [] as number[],
+        backgroundColor: 'rgba(126, 211, 33, 1)',
+      },
+    ],
   }
 
   logs?.forEach((log) => {
@@ -31,17 +37,23 @@ type SkillFrequencyChartProps = {
 
 const SkillFrequencyChart = ({ logs }: SkillFrequencyChartProps) => {
   return (
-    <div className="w-ful flex justify-center bg-zinc-100 py-8 my-8">
-      <div className="w-[99%]">
+    <div className="w-full flex justify-center">
+      <div className="w-[99%] h-72">
         <Bar
           data={createChartDataFromLogs(logs, 5)}
           options={{
             plugins: { legend: { display: false } },
-            scales: {
-              x: { border: { display: false }, grid: { display: false } },
-              y: { border: { display: false }, grid: { display: false } },
-            },
             indexAxis: 'y',
+            datasets: {
+              bar: { barPercentage: 0.7 },
+            },
+            scales: {
+              x: {
+                ticks: {
+                  callback: (val) => (val === 1 ? val + ' hr' : val + ' hrs'),
+                },
+              },
+            },
             responsive: true,
             maintainAspectRatio: false,
           }}

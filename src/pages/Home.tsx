@@ -45,21 +45,25 @@ export const Home = () => {
             Start skill timer
           </button>
         </div>
-        <SkillFrequencyChart logs={(logs as SkillLog[]) || []} />
-        <TimeHistoryChart logs={(logs as SkillLog[]) || []} />
+        <div className="flex flex-col gap-16">
+          <SkillFrequencyChart logs={(logs as SkillLog[]) || []} />
+          <TimeHistoryChart logs={(logs as SkillLog[]) || []} />
+          <LogTable logs={(logs as SkillLog[]) || []} />
+        </div>
+
         <LogModal
           isOpen={isLogModalOpen}
           setIsOpen={setIsLogModalOpen}
           secondsFromTimer={secondsFromTimer}
           setSecondsFromTimer={setSecondsFromTimer}
         />
+
         <TimerModal
           isOpen={isTimerModalOpen}
           setIsOpen={setIsTimerModalOpen}
           setSecondsFromTimer={setSecondsFromTimer}
           openLogModal={() => setIsLogModalOpen(true)}
         />
-        <LogTable logs={(logs as SkillLog[]) || []} />
       </div>
     </div>
   )

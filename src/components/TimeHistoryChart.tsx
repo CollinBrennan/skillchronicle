@@ -5,7 +5,14 @@ import { SkillLog } from './LogTable'
 function createChartDataFromLogs(logs: SkillLog[]): ChartData<'line'> {
   const chartData = {
     labels: [] as string[],
-    datasets: [{ label: 'hours', data: [] as number[] }],
+    datasets: [
+      {
+        label: 'hours',
+        data: [] as number[],
+        borderColor: 'rgba(126, 211, 33, 1)',
+        backgroundColor: 'rgba(126, 211, 33, 1)',
+      },
+    ],
   }
 
   if (logs.length > 0) {
@@ -63,15 +70,23 @@ type SkillFrequencyChartProps = {
 
 const TimeHistoryChart = ({ logs }: SkillFrequencyChartProps) => {
   return (
-    <div className="w-ful flex justify-center bg-zinc-100 py-8 my-8">
-      <div className="w-[99%]">
+    <div className="w-full flex justify-center">
+      <div className="w-[99%] h-72">
         <Line
           data={createChartDataFromLogs(logs)}
           options={{
             plugins: { legend: { display: false } },
+            elements: {
+              point: {
+                radius: 10,
+              },
+            },
             scales: {
-              x: { border: { display: false }, grid: { display: false } },
-              y: { border: { display: false }, grid: { display: false } },
+              y: {
+                ticks: {
+                  callback: (val) => (val === 1 ? val + ' hr' : val + ' hrs'),
+                },
+              },
             },
             responsive: true,
             maintainAspectRatio: false,

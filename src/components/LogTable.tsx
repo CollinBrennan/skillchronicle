@@ -26,7 +26,7 @@ export const LogTable = ({ logs }: LogTableProps) => {
   return (
     <table className="table-fixed w-full">
       <thead>
-        <tr className="">
+        <tr>
           <th className="bg-zinc-300 text-left px-2 py-2">Date</th>
           <th className="bg-zinc-300 text-left px-2 py-2">Skill</th>
           <th className="bg-zinc-300 text-left px-2 py-2">Time</th>
