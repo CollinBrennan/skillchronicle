@@ -11,36 +11,46 @@ function createChartDataFromLogs(logs: SkillLog[]): ChartData<'line'> {
   if (logs.length > 0) {
     var totalTimeInDay = 0
     var date = logs[0].createdAt.toDate()
-    var dayOfMonth = date.getDate()
     var month = date.getMonth()
     var year = date.getFullYear()
 
     logs.forEach((log, logIndex) => {
       const logDate = log.createdAt.toDate()
-      const logDayOfMonth = logDate.getDate()
       const logMonth = logDate.getMonth()
       const logYear = logDate.getFullYear()
-      console.log(dayOfMonth)
-      if (
-        logDayOfMonth === dayOfMonth &&
-        logMonth === month &&
-        logYear === year &&
-        logIndex !== logs.length - 1
-      ) {
+
+      if (logMonth === month && logYear === year) {
         totalTimeInDay += log.hours + log.minutes / 60
+        if (logIndex === logs.length - 1) {
+          chartData.labels.unshift(
+            date.toLocaleDateString(undefined, {
+              month: 'short',
+              year: 'numeric',
+            })
+          )
+          chartData.datasets[0].data.unshift(totalTimeInDay)
+        }
       } else {
         chartData.labels.unshift(
           date.toLocaleDateString(undefined, {
             month: 'short',
-            day: 'numeric',
+            year: 'numeric',
           })
         )
         chartData.datasets[0].data.unshift(totalTimeInDay)
         totalTimeInDay = log.hours + log.minutes / 60
         date = logDate
-        dayOfMonth = logDayOfMonth
         month = logMonth
         year = logYear
+        if (logIndex === logs.length - 1) {
+          chartData.labels.unshift(
+            date.toLocaleDateString(undefined, {
+              month: 'short',
+              year: 'numeric',
+            })
+          )
+          chartData.datasets[0].data.unshift(totalTimeInDay)
+        }
       }
     })
   }
