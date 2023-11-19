@@ -36,23 +36,21 @@ export const LogTable = ({ logs }: LogTableProps) => {
         </tr>
       </thead>
       <tbody>
-        {logs.map((log) => (
-          <>
-            <tr>
-              <td className="bg-zinc-100 text-left px-2 py-2">
-                {formatDate(log.createdAt)}
-              </td>
-              <td className="bg-zinc-100 text-left px-2 py-2 truncate">
-                {log.skill}
-              </td>
-              <td className="bg-zinc-100 text-left px-2 py-2">
-                {formatTime(log.hours, log.minutes)}
-              </td>
-              <td className="bg-zinc-100 text-left px-2 py-2 truncate hidden md:table-cell">
-                {log.notes}
-              </td>
-            </tr>
-          </>
+        {logs.map((log, i) => (
+          <tr key={i}>
+            <td className="bg-zinc-100 text-left px-2 py-2">
+              {formatDate(log.createdAt)}
+            </td>
+            <td className="bg-zinc-100 text-left px-2 py-2 truncate">
+              {log.skill}
+            </td>
+            <td className="bg-zinc-100 text-left px-2 py-2">
+              {formatTime(log.hours, log.minutes)}
+            </td>
+            <td className="bg-zinc-100 text-left px-2 py-2 truncate hidden md:table-cell">
+              {log.notes}
+            </td>
+          </tr>
         ))}
       </tbody>
     </table>

@@ -19,28 +19,24 @@ export const Navbar = () => {
   }
 
   return (
-    <div>
-      <div className="flex justify-center h-14 bg-zinc-100">
-        <div className="flex w-full justify-between items-center max-w-7xl">
-          <img src={logo} className="h-6 ml-6" />
-          {user ? (
-            <div className="flex flex-row items-center mr-6 gap-4">
-              <img
-                className="w-6 h-6 rounded-full"
-                src={user.photoURL || ''}
-                referrerPolicy="no-referrer"
-              />
-              <button onClick={userSignOut} className="">
-                Log out
-              </button>
-            </div>
-          ) : (
-            <button onClick={signInWithGoogle} className="mr-6">
-              Log in
-            </button>
-          )}
+    <div className="flex w-full justify-between h-14 bg-zinc-100 items-center">
+      <img src={logo} className="h-6 ml-6" />
+      {user ? (
+        <div className="flex flex-row items-center mr-6 gap-4">
+          <img
+            className="w-6 h-6 rounded-full"
+            src={user.photoURL || ''}
+            referrerPolicy="no-referrer"
+          />
+          <button onClick={userSignOut} className="">
+            Log out
+          </button>
         </div>
-      </div>
+      ) : (
+        <button onClick={signInWithGoogle} className="mr-6">
+          Log in
+        </button>
+      )}
     </div>
   )
 }

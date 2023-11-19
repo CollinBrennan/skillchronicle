@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import LogModal from '../components/LogModal'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { auth } from '../config/firebase'
 import { SkillLog, LogTable } from '../components/LogTable'
-import { collection, orderBy, query, where } from 'firebase/firestore'
+import { collection, limit, orderBy, query, where } from 'firebase/firestore'
 import { db } from '../config/firebase'
 import TimerModal from '../components/TimerModal'
 import SkillFrequencyChart from '../components/SkillFrequencyChart'
@@ -22,6 +22,10 @@ export const Home = () => {
     orderBy('createdAt', 'desc')
   )
   const [logs] = useCollectionData(logsRefQuery)
+
+  // useEffect(() => {
+  //   console.log(logs)
+  // }, [logs])
 
   return (
     <div className="flex justify-center font-inter">

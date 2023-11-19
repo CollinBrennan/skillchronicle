@@ -4,7 +4,8 @@ import { DocumentData } from 'firebase/firestore'
 import { ChartData } from 'chart.js'
 
 function createChartDataFromLogs(
-  logs: DocumentData[] | undefined
+  logs: DocumentData[] | undefined,
+  numMostRecentSkills: number
 ): ChartData<'bar'> {
   const chartData = {
     labels: [] as string[],
@@ -12,15 +13,16 @@ function createChartDataFromLogs(
   }
 
   logs?.forEach((log) => {
-    if (chartData.labels.includes(log.skill)) {
-      const indexOfSkill = chartData.labels.indexOf(log.skill)
-      chartData.datasets[0].data[indexOfSkill] += 1
-    } else {
+    const indexOfSkill = chartData.labels.indexOf(log.skill)
+    if (indexOfSkill !== -1) {
+      chartData.datasets[0].data[indexOfSkill] += log.hours + log.minutes / 60
+    } else if (chartData.labels.length < numMostRecentSkills) {
       chartData.labels.push(log.skill)
-      chartData.datasets[0].data.push(1)
+      chartData.datasets[0].data.push(log.hours + log.minutes / 60)
     }
   })
 
+  console.log(chartData)
   return chartData as ChartData<'bar'>
 }
 
@@ -33,7 +35,7 @@ const SkillFrequencyChart = ({ logs }: SkillFrequencyChartProps) => {
     <div className="w-ful flex justify-center bg-zinc-100 py-8 my-8">
       <div className="w-[99%]">
         <Bar
-          data={createChartDataFromLogs(logs)}
+          data={createChartDataFromLogs(logs, 5)}
           options={{
             plugins: { legend: { display: false } },
             scales: {
