@@ -9,7 +9,7 @@ function createChartDataFromLogs(
 ): ChartData<'bar'> {
   const chartData = {
     labels: [] as string[],
-    datasets: [{ data: [] as number[] }],
+    datasets: [{ label: 'hours', data: [] as number[] }],
   }
 
   logs?.forEach((log) => {
