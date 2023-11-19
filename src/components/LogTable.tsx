@@ -9,7 +9,7 @@ export interface SkillLog {
   notes: string
 }
 
-interface LogTableProps {
+type LogTableProps = {
   logs: SkillLog[]
 }
 

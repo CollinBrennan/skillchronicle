@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import LogModal from '../components/LogModal'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { auth } from '../config/firebase'
 import { SkillLog, LogTable } from '../components/LogTable'
-import { collection, limit, orderBy, query, where } from 'firebase/firestore'
+import { collection, orderBy, query, where } from 'firebase/firestore'
 import { db } from '../config/firebase'
 import TimerModal from '../components/TimerModal'
 import SkillFrequencyChart from '../components/SkillFrequencyChart'
+import TimeHistoryChart from '../components/TimeHistoryChart'
 
 export const Home = () => {
   const [isLogModalOpen, setIsLogModalOpen] = useState(false)
@@ -44,7 +45,8 @@ export const Home = () => {
             Start skill timer
           </button>
         </div>
-        <SkillFrequencyChart logs={logs} />
+        <SkillFrequencyChart logs={(logs as SkillLog[]) || []} />
+        <TimeHistoryChart logs={(logs as SkillLog[]) || []} />
         <LogModal
           isOpen={isLogModalOpen}
           setIsOpen={setIsLogModalOpen}

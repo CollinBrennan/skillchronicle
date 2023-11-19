@@ -22,7 +22,6 @@ function createChartDataFromLogs(
     }
   })
 
-  console.log(chartData)
   return chartData as ChartData<'bar'>
 }
 
