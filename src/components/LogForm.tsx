@@ -4,6 +4,7 @@ import { Timestamp, addDoc, collection } from 'firebase/firestore'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { timeFromSeconds } from '../utils/time'
 
 interface FormData {
   skill: string
@@ -22,8 +23,7 @@ export const LogForm = ({
   secondsFromTimer,
 }: LogFormProps) => {
   const [user] = useAuthState(auth)
-  const hours = Math.floor(secondsFromTimer / 3600)
-  const minutes = Math.floor((secondsFromTimer - hours * 3600) / 60) % 60
+  const { hours, minutes } = timeFromSeconds(secondsFromTimer)
 
   const schema = yup.object().shape({
     skill: yup.string().required('Skill name required.'),

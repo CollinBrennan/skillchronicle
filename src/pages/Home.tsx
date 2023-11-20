@@ -24,10 +24,6 @@ export const Home = () => {
   )
   const [logs] = useCollectionData(logsRefQuery)
 
-  // useEffect(() => {
-  //   console.log(logs)
-  // }, [logs])
-
   return (
     <div className="flex justify-center font-inter">
       <div className="max-w-screen-xl mx-4">

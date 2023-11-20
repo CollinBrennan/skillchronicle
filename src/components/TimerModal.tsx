@@ -1,3 +1,4 @@
+import { timeFromSeconds } from '../utils/time'
 import { Dialog } from '@headlessui/react'
 import {
   PauseCircleIcon,
@@ -26,9 +27,7 @@ const TimerModal = ({
   const [isPaused, setIsPaused] = useState(false)
   const interval = useRef<TimerInterval>(null)
   const [totalSeconds, setTotalSeconds] = useState(0)
-  var hours = Math.floor(totalSeconds / 3600)
-  var minutes = Math.floor((totalSeconds - hours * 3600) / 60) % 60
-  var seconds = totalSeconds % 60
+  const { hours, minutes, seconds } = timeFromSeconds(totalSeconds)
 
   function handleClose() {
     if (interval.current) clearInterval(interval.current)
