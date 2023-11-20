@@ -3,6 +3,7 @@ import 'chart.js/auto'
 import { ChartData } from 'chart.js'
 import { LogDocData } from '../utils/types'
 import { timeFromSeconds } from '../utils/dateAndTime'
+import { useState } from 'react'
 
 function getChartData(
   logs: LogDocData[] | undefined,
@@ -38,28 +39,38 @@ type SkillFrequencyChartProps = {
 }
 
 const SkillFreqChart = ({ logs }: SkillFrequencyChartProps) => {
+  const [isViewAll, setIsViewAll] = useState(false)
+
   return (
-    <div className="w-full flex justify-center">
-      <div className="w-[99%] h-72">
-        <Bar
-          data={getChartData(logs, 5)}
-          options={{
-            plugins: { legend: { display: false } },
-            indexAxis: 'y',
-            datasets: {
-              bar: { barPercentage: 0.65 },
-            },
-            scales: {
-              x: {
-                ticks: {
-                  callback: (val) => (val === 1 ? val + ' hr' : val + ' hrs'),
+    <div className="w-full flex flex-col">
+      <button
+        onClick={() => setIsViewAll((prevIsViewAll) => !prevIsViewAll)}
+        className="flex self-end text-blue-500 underline"
+      >
+        {!isViewAll ? 'View more' : 'View less'}
+      </button>
+      <div className="w-full flex justify-center">
+        <div className="w-[99%] h-72">
+          <Bar
+            data={getChartData(logs, !isViewAll ? 5 : 10)}
+            options={{
+              plugins: { legend: { display: false } },
+              indexAxis: 'y',
+              datasets: {
+                bar: { barPercentage: 0.65 },
+              },
+              scales: {
+                x: {
+                  ticks: {
+                    callback: (val) => (val === 1 ? val + ' hr' : val + ' hrs'),
+                  },
                 },
               },
-            },
-            responsive: true,
-            maintainAspectRatio: false,
-          }}
-        />
+              responsive: true,
+              maintainAspectRatio: false,
+            }}
+          />
+        </div>
       </div>
     </div>
   )
