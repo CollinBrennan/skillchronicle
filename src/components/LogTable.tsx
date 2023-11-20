@@ -24,30 +24,22 @@ export const LogTable = ({ logs }: LogTableProps) => {
   }
 
   return (
-    <table className="table-fixed w-full">
+    <table className="table-fixed w-full text-sm md:text-base">
       <thead>
-        <tr>
-          <th className="bg-zinc-300 text-left px-2 py-2">Date</th>
-          <th className="bg-zinc-300 text-left px-2 py-2">Skill</th>
-          <th className="bg-zinc-300 text-left px-2 py-2">Time</th>
-          <th className="bg-zinc-300 text-left px-2 py-2 hidden md:table-cell">
-            Notes
-          </th>
+        <tr className="bg-zinc-300 text-left">
+          <th className="font-normal px-2 py-2">Date</th>
+          <th className="font-normal px-2 py-2">Skill</th>
+          <th className="font-normal px-2 py-2">Time</th>
+          <th className="font-normal px-2 py-2 hidden md:table-cell">Notes</th>
         </tr>
       </thead>
       <tbody>
         {logs.map((log, i) => (
-          <tr key={i}>
-            <td className="bg-zinc-100 text-left px-2 py-2">
-              {formatDate(log.createdAt)}
-            </td>
-            <td className="bg-zinc-100 text-left px-2 py-2 truncate">
-              {log.skill}
-            </td>
-            <td className="bg-zinc-100 text-left px-2 py-2">
-              {formatTime(log.hours, log.minutes)}
-            </td>
-            <td className="bg-zinc-100 text-left px-2 py-2 truncate hidden md:table-cell">
+          <tr key={i} className="bg-zinc-100 text-left ">
+            <td className="px-2 py-2">{formatDate(log.createdAt)}</td>
+            <td className="px-2 py-2 truncate">{log.skill}</td>
+            <td className="px-2 py-2">{formatTime(log.hours, log.minutes)}</td>
+            <td className="px-2 py-2 truncate hidden md:table-cell">
               {log.notes}
             </td>
           </tr>

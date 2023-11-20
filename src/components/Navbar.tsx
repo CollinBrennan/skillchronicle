@@ -19,7 +19,7 @@ export const Navbar = () => {
   }
 
   return (
-    <div className="flex w-full justify-between h-14 bg-zinc-100 items-center">
+    <div className="flex w-full justify-between h-14 items-center">
       <img src={logo} className="h-6 ml-6" />
       {user ? (
         <div className="flex flex-row items-center mr-6 gap-4">

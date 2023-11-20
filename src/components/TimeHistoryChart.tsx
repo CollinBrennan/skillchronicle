@@ -78,7 +78,8 @@ const TimeHistoryChart = ({ logs }: SkillFrequencyChartProps) => {
             plugins: { legend: { display: false } },
             elements: {
               point: {
-                radius: 10,
+                radius: 8,
+                hoverRadius: 10,
               },
             },
             scales: {

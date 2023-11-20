@@ -45,7 +45,7 @@ const SkillFrequencyChart = ({ logs }: SkillFrequencyChartProps) => {
             plugins: { legend: { display: false } },
             indexAxis: 'y',
             datasets: {
-              bar: { barPercentage: 0.7 },
+              bar: { barPercentage: 0.65 },
             },
             scales: {
               x: {

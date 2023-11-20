@@ -45,7 +45,7 @@ export const Home = () => {
             Start skill timer
           </button>
         </div>
-        <div className="flex flex-col gap-16">
+        <div className="flex flex-col gap-16 pb-16">
           <SkillFrequencyChart logs={(logs as SkillLog[]) || []} />
           <TimeHistoryChart logs={(logs as SkillLog[]) || []} />
           <LogTable logs={(logs as SkillLog[]) || []} />
