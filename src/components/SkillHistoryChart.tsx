@@ -26,7 +26,7 @@ function getChartData(logs: LogDocData[] | undefined): ChartData<'line'> {
     chartData.datasets[0].data.unshift(hours)
   }
 
-  if (logs && logs.length > 0) {
+  if (logs) {
     var totalHoursInDay = 0
     var date = logs[0].createdAt.toDate()
     var month = date.getMonth()
@@ -38,7 +38,7 @@ function getChartData(logs: LogDocData[] | undefined): ChartData<'line'> {
       const logMonth = logDate.getMonth()
       const logYear = logDate.getFullYear()
 
-      // If date of log is in current month
+      // Add hours to current month
       if (logMonth === month && logYear === year) {
         totalHoursInDay += hours + minutes / 60
       } else {
@@ -55,7 +55,7 @@ function getChartData(logs: LogDocData[] | undefined): ChartData<'line'> {
       }
     })
   }
-  return chartData as ChartData<'line'>
+  return chartData
 }
 
 type SkillFrequencyChartProps = {

@@ -1,4 +1,4 @@
-import { db, auth } from '../config/firebase'
+import { db, auth, provider } from '../config/firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { Timestamp, addDoc, collection } from 'firebase/firestore'
 import { useForm } from 'react-hook-form'
@@ -6,6 +6,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { timeFromSeconds } from '../utils/dateAndTime'
 import { LogDocData } from '../utils/types'
+import { signInWithPopup } from 'firebase/auth'
 
 type FormData = {
   skill: string
@@ -25,6 +26,10 @@ export const LogForm = ({
 }: LogFormProps) => {
   const [user] = useAuthState(auth)
   const { hours, minutes } = timeFromSeconds(secondsFromTimer)
+
+  const signInWithGoogle = async () => {
+    await signInWithPopup(auth, provider)
+  }
 
   const schema = yup.object().shape({
     skill: yup.string().required('Skill name required.'),
@@ -71,7 +76,7 @@ export const LogForm = ({
     <form onSubmit={handleSubmit(handleLogSkill)}>
       <p className="mb-1">Create a skill category to start logging</p>
       <input
-        className="border-2 border-black py-1 px-2 max-w-sm w-full"
+        className="border-2 border-black py-1 px-2 max-w-sm w-full focus:outline-none"
         placeholder="ex. Skateboarding"
         {...register('skill')}
       />
@@ -79,35 +84,51 @@ export const LogForm = ({
 
       <p className="mt-10 mb-1">How long did you work on this skill?</p>
       <div className="flex flex-row gap-2">
-        <input
-          className="w-24 border-2 border-black py-1 px-2"
-          placeholder="1 Hour"
-          value={secondsFromTimer > 0 ? hours : undefined}
-          {...register('hours')}
-        />
-        <input
-          className="w-24 border-2 border-black py-1 px-2"
-          placeholder="2 Minutes"
-          value={secondsFromTimer > 0 ? minutes : undefined}
-          {...register('minutes')}
-        />
+        <div className="flex flex-row border-2 border-black py-1 px-2">
+          <input
+            className="w-12 focus:outline-none"
+            placeholder="0"
+            defaultValue={secondsFromTimer > 0 ? hours : undefined}
+            {...register('hours')}
+          />
+          <p>hours</p>
+        </div>
+        <div className="flex flex-row border-2 border-black py-1 px-2">
+          <input
+            className="w-12 focus:outline-none"
+            placeholder="0"
+            defaultValue={secondsFromTimer > 0 ? minutes : undefined}
+            {...register('minutes')}
+          />
+          <p>minutes</p>
+        </div>
       </div>
       <p className="text-red-500">{errors.hours?.message}</p>
       <p className="text-red-500">{errors.minutes?.message}</p>
 
       <p className="mt-10 mb-1">Notes about the session</p>
       <input
-        className="border-2 border-black py-1 px-2 w-full"
+        className="border-2 border-black py-1 px-2 w-full focus:outline-none"
         placeholder="ex. I felt really good about this today."
         {...register('notes')}
       />
 
       <div className="mt-16">
-        <input
-          className="bg-zinc-300 px-6 py-2 rounded hover:cursor-pointer"
-          type="submit"
-          value="Log skill"
-        />
+        {user ? (
+          <input
+            className="bg-zinc-300 px-6 py-2 rounded hover:cursor-pointer"
+            type="submit"
+            value="Log skill"
+          />
+        ) : (
+          <button
+            onClick={signInWithGoogle}
+            className="bg-zinc-300 px-6 py-2 rounded"
+            type="button"
+          >
+            Sign in with Google
+          </button>
+        )}
       </div>
     </form>
   )

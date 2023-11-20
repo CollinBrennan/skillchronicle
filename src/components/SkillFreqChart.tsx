@@ -30,14 +30,14 @@ function getChartData(
     }
   })
 
-  return chartData as ChartData<'bar'>
+  return chartData
 }
 
 type SkillFrequencyChartProps = {
   logs?: LogDocData[]
 }
 
-const SkillFrequencyChart = ({ logs }: SkillFrequencyChartProps) => {
+const SkillFreqChart = ({ logs }: SkillFrequencyChartProps) => {
   return (
     <div className="w-full flex justify-center">
       <div className="w-[99%] h-72">
@@ -65,4 +65,4 @@ const SkillFrequencyChart = ({ logs }: SkillFrequencyChartProps) => {
   )
 }
 
-export default SkillFrequencyChart
+export default SkillFreqChart

@@ -7,9 +7,9 @@ import { LogTable } from '../components/LogTable'
 import { collection, orderBy, query, where } from 'firebase/firestore'
 import { db } from '../config/firebase'
 import TimerModal from '../components/TimerModal'
-import SkillFrequencyChart from '../components/SkillFrequencyChart'
-import TimeHistoryChart from '../components/TimeHistoryChart'
+import SkillHistoryChart from '../components/SkillHistoryChart'
 import { LogDocData } from '../utils/types'
+import SkillFreqChart from '../components/SkillFreqChart'
 
 export const Home = () => {
   const [isLogModalOpen, setIsLogModalOpen] = useState(false)
@@ -43,8 +43,8 @@ export const Home = () => {
           </button>
         </div>
         <div className="flex flex-col gap-16 pb-16">
-          <SkillFrequencyChart logs={logs as LogDocData[]} />
-          <TimeHistoryChart logs={logs as LogDocData[]} />
+          <SkillFreqChart logs={logs as LogDocData[]} />
+          <SkillHistoryChart logs={logs as LogDocData[]} />
           <LogTable logs={logs as LogDocData[]} />
         </div>
 
