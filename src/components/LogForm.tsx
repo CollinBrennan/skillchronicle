@@ -5,15 +5,16 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { timeFromSeconds } from '../utils/time'
+import { LogDocData } from '../utils/types'
 
-interface FormData {
+type FormData = {
   skill: string
   hours?: number
   minutes?: number
   notes?: string
 }
 
-interface LogFormProps {
+type LogFormProps = {
   closeModalFunction: any
   secondsFromTimer: number
 }
@@ -52,14 +53,16 @@ export const LogForm = ({
 
   const handleLogSkill = async (data: FormData) => {
     if (user) {
-      await addDoc(collection(db, 'logs'), {
+      const logData: LogDocData = {
         skill: data.skill,
-        notes: data.notes,
-        hours: data.hours,
-        minutes: data.minutes,
+        notes: data.notes ? data.notes : '',
+        seconds:
+          (data.hours ? data.hours * 3600 : 0) +
+          (data.minutes ? data.minutes * 60 : 0),
         createdAt: Timestamp.now(),
         uid: user.uid,
-      })
+      }
+      await addDoc(collection(db, 'logs'), logData)
       closeModalFunction()
     }
   }

@@ -1,10 +1,11 @@
 import { Bar } from 'react-chartjs-2'
 import 'chart.js/auto'
-import { DocumentData } from 'firebase/firestore'
 import { ChartData } from 'chart.js'
+import { LogDocData } from '../utils/types'
+import { timeFromSeconds } from '../utils/time'
 
 function createChartDataFromLogs(
-  logs: DocumentData[] | undefined,
+  logs: LogDocData[] | undefined,
   numMostRecentSkills: number
 ): ChartData<'bar'> {
   const chartData = {
@@ -20,11 +21,12 @@ function createChartDataFromLogs(
 
   logs?.forEach((log) => {
     const indexOfSkill = chartData.labels.indexOf(log.skill)
+    const { hours, minutes } = timeFromSeconds(log.seconds)
     if (indexOfSkill !== -1) {
-      chartData.datasets[0].data[indexOfSkill] += log.hours + log.minutes / 60
+      chartData.datasets[0].data[indexOfSkill] += hours + minutes / 60
     } else if (chartData.labels.length < numMostRecentSkills) {
       chartData.labels.push(log.skill)
-      chartData.datasets[0].data.push(log.hours + log.minutes / 60)
+      chartData.datasets[0].data.push(hours + minutes / 60)
     }
   })
 
@@ -32,7 +34,7 @@ function createChartDataFromLogs(
 }
 
 type SkillFrequencyChartProps = {
-  logs: DocumentData[] | undefined
+  logs: LogDocData[] | undefined
 }
 
 const SkillFrequencyChart = ({ logs }: SkillFrequencyChartProps) => {

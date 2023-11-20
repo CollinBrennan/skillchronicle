@@ -1,20 +1,15 @@
 import dayjs from 'dayjs'
 import { Timestamp } from 'firebase/firestore'
-
-export interface SkillLog {
-  createdAt: Timestamp
-  skill: string
-  hours: number
-  minutes: number
-  notes: string
-}
+import { LogDocData } from '../utils/types'
+import { timeFromSeconds } from '../utils/time'
 
 type LogTableProps = {
-  logs: SkillLog[]
+  logs: LogDocData[]
 }
 
 export const LogTable = ({ logs }: LogTableProps) => {
-  function formatTime(hours: number, minutes: number) {
+  function formatTime(seconds: number) {
+    const { hours, minutes } = timeFromSeconds(seconds)
     const formattedMinutes = minutes < 10 ? '0' + minutes.toString() : minutes
     return `${hours}:${formattedMinutes}`
   }
@@ -38,7 +33,7 @@ export const LogTable = ({ logs }: LogTableProps) => {
           <tr key={i} className="bg-zinc-100 text-left ">
             <td className="px-2 py-2">{formatDate(log.createdAt)}</td>
             <td className="px-2 py-2 truncate">{log.skill}</td>
-            <td className="px-2 py-2">{formatTime(log.hours, log.minutes)}</td>
+            <td className="px-2 py-2">{formatTime(log.seconds)}</td>
             <td className="px-2 py-2 truncate hidden md:table-cell">
               {log.notes}
             </td>

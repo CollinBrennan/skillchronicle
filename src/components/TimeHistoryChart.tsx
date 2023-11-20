@@ -1,8 +1,9 @@
 import { ChartData } from 'chart.js'
 import { Line } from 'react-chartjs-2'
-import { SkillLog } from './LogTable'
+import { LogDocData } from '../utils/types'
+import { timeFromSeconds } from '../utils/time'
 
-function createChartDataFromLogs(logs: SkillLog[]): ChartData<'line'> {
+function createChartDataFromLogs(logs: LogDocData[]): ChartData<'line'> {
   const chartData = {
     labels: [] as string[],
     datasets: [
@@ -22,12 +23,13 @@ function createChartDataFromLogs(logs: SkillLog[]): ChartData<'line'> {
     var year = date.getFullYear()
 
     logs.forEach((log, logIndex) => {
+      const { hours, minutes } = timeFromSeconds(log.seconds)
       const logDate = log.createdAt.toDate()
       const logMonth = logDate.getMonth()
       const logYear = logDate.getFullYear()
 
       if (logMonth === month && logYear === year) {
-        totalTimeInDay += log.hours + log.minutes / 60
+        totalTimeInDay += hours + minutes / 60
         if (logIndex === logs.length - 1) {
           chartData.labels.unshift(
             date.toLocaleDateString(undefined, {
@@ -45,7 +47,7 @@ function createChartDataFromLogs(logs: SkillLog[]): ChartData<'line'> {
           })
         )
         chartData.datasets[0].data.unshift(totalTimeInDay)
-        totalTimeInDay = log.hours + log.minutes / 60
+        totalTimeInDay = hours + minutes / 60
         date = logDate
         month = logMonth
         year = logYear
@@ -65,7 +67,7 @@ function createChartDataFromLogs(logs: SkillLog[]): ChartData<'line'> {
 }
 
 type SkillFrequencyChartProps = {
-  logs: SkillLog[]
+  logs: LogDocData[]
 }
 
 const TimeHistoryChart = ({ logs }: SkillFrequencyChartProps) => {
