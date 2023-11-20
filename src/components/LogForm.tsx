@@ -91,7 +91,7 @@ export const LogForm = ({
             defaultValue={secondsFromTimer > 0 ? hours : undefined}
             {...register('hours')}
           />
-          <p className="font-semibold">hours</p>
+          <p>hours</p>
         </div>
         <div className="flex flex-row border-2 border-black py-1 px-2">
           <input
@@ -100,7 +100,7 @@ export const LogForm = ({
             defaultValue={secondsFromTimer > 0 ? minutes : undefined}
             {...register('minutes')}
           />
-          <p className="font-semibold">minutes</p>
+          <p>minutes</p>
         </div>
       </div>
       <p className="text-red-500">{errors.hours?.message}</p>
@@ -116,7 +116,7 @@ export const LogForm = ({
       <div className="mt-16">
         {user ? (
           <input
-            className="bg-zinc-300 px-6 py-2 rounded hover:cursor-pointer"
+            className="bg-scRed text-white px-6 py-2 rounded hover:cursor-pointer"
             type="submit"
             value="Log skill"
           />

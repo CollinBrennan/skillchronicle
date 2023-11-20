@@ -77,17 +77,23 @@ const TimerModal = ({
 
           <div className="flex py-8 flex-row gap-2 justify-center font-bold text-7xl text-center">
             <div>
-              <div>{(hours < 10 ? '0' : '') + hours}</div>
+              <div className="text-scBlue">
+                {(hours < 10 ? '0' : '') + hours}
+              </div>
               <div className="text-base font-normal">hours</div>
             </div>
             <div className="-translate-y-1">:</div>
             <div>
-              <div>{(minutes < 10 ? '0' : '') + minutes}</div>
+              <div className="text-scBlue">
+                {(minutes < 10 ? '0' : '') + minutes}
+              </div>
               <div className="text-base font-normal">minutes</div>
             </div>
             <div className="-translate-y-1">:</div>
             <div>
-              <div>{(seconds < 10 ? '0' : '') + seconds}</div>
+              <div className="text-scBlue">
+                {(seconds < 10 ? '0' : '') + seconds}
+              </div>
               <div className="text-base font-normal">seconds</div>
             </div>
           </div>
@@ -96,16 +102,16 @@ const TimerModal = ({
             {!hasStarted ? (
               <button
                 onClick={startTimer}
-                className="bg-zinc-300 px-6 py-2 flex gap-2 rounded"
+                className="bg-scBlue border-2 border-scBlue text-white px-6 py-2 flex gap-2 rounded"
               >
                 <PlayCircleIcon className="h-6 w-6" />
                 Start timer
               </button>
             ) : (
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row gap-8">
                 <button
                   onClick={endTimer}
-                  className="bg-zinc-300 px-6 py-2 flex gap-2 rounded"
+                  className="bg-white border-2 border-neutral-700 px-6 py-2 flex gap-2 rounded"
                 >
                   <StopCircleIcon className="h-6 w-6" />
                   Stop
@@ -113,7 +119,7 @@ const TimerModal = ({
                 {isPaused ? (
                   <button
                     onClick={startTimer}
-                    className="bg-zinc-600 text-white px-6 py-2 flex gap-2 rounded"
+                    className="bg-neutral-700 border-2 border-neutral-700 text-white px-6 py-2 flex gap-2 rounded"
                   >
                     <PlayCircleIcon className="h-6 w-6" />
                     Resume
@@ -121,7 +127,7 @@ const TimerModal = ({
                 ) : (
                   <button
                     onClick={stopTimer}
-                    className="bg-zinc-300 px-6 py-2 flex gap-2 rounded"
+                    className="bg-white border-2 border-neutral-700 px-6 py-2 flex gap-2 rounded"
                   >
                     <PauseCircleIcon className="h-6 w-6" />
                     Pause

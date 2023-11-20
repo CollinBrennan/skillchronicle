@@ -5,7 +5,13 @@ export default {
     fontFamily: {
       inter: ['Inter', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      colors: {
+        scBlue: '#1F6FEB',
+        scGreen: '#7ED321',
+        scRed: '#FF6B6B',
+      },
+    },
   },
   plugins: [],
 }

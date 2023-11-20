@@ -45,7 +45,7 @@ const SkillFreqChart = ({ logs }: SkillFrequencyChartProps) => {
     <div className="w-full flex flex-col">
       <button
         onClick={() => setIsViewAll((prevIsViewAll) => !prevIsViewAll)}
-        className="flex self-end text-blue-500 underline"
+        className="flex self-end text-scBlue underline"
       >
         {!isViewAll ? 'View more' : 'View less'}
       </button>
