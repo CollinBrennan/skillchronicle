@@ -4,7 +4,7 @@ import { ChartData } from 'chart.js'
 import { LogDocData } from '../utils/types'
 import { timeFromSeconds } from '../utils/dateAndTime'
 
-function createChartDataFromLogs(
+function getChartData(
   logs: LogDocData[] | undefined,
   numMostRecentSkills: number
 ): ChartData<'bar'> {
@@ -42,7 +42,7 @@ const SkillFrequencyChart = ({ logs }: SkillFrequencyChartProps) => {
     <div className="w-full flex justify-center">
       <div className="w-[99%] h-72">
         <Bar
-          data={createChartDataFromLogs(logs, 5)}
+          data={getChartData(logs, 5)}
           options={{
             plugins: { legend: { display: false } },
             indexAxis: 'y',

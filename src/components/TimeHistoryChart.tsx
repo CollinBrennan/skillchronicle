@@ -3,9 +3,7 @@ import { Line } from 'react-chartjs-2'
 import { LogDocData } from '../utils/types'
 import { timeFromSeconds } from '../utils/dateAndTime'
 
-function createChartDataFromLogs(
-  logs: LogDocData[] | undefined
-): ChartData<'line'> {
+function getChartData(logs: LogDocData[] | undefined): ChartData<'line'> {
   const chartData = {
     labels: [] as string[],
     datasets: [
@@ -18,8 +16,18 @@ function createChartDataFromLogs(
     ],
   }
 
+  function addDataPoint(date: Date, hours: number) {
+    chartData.labels.unshift(
+      date.toLocaleDateString(undefined, {
+        month: 'short',
+        year: 'numeric',
+      })
+    )
+    chartData.datasets[0].data.unshift(hours)
+  }
+
   if (logs && logs.length > 0) {
-    var totalTimeInDay = 0
+    var totalHoursInDay = 0
     var date = logs[0].createdAt.toDate()
     var month = date.getMonth()
     var year = date.getFullYear()
@@ -30,38 +38,20 @@ function createChartDataFromLogs(
       const logMonth = logDate.getMonth()
       const logYear = logDate.getFullYear()
 
+      // If date of log is in current month
       if (logMonth === month && logYear === year) {
-        totalTimeInDay += hours + minutes / 60
-        if (logIndex === logs.length - 1) {
-          chartData.labels.unshift(
-            date.toLocaleDateString(undefined, {
-              month: 'short',
-              year: 'numeric',
-            })
-          )
-          chartData.datasets[0].data.unshift(totalTimeInDay)
-        }
+        totalHoursInDay += hours + minutes / 60
       } else {
-        chartData.labels.unshift(
-          date.toLocaleDateString(undefined, {
-            month: 'short',
-            year: 'numeric',
-          })
-        )
-        chartData.datasets[0].data.unshift(totalTimeInDay)
-        totalTimeInDay = hours + minutes / 60
+        // Push previous month, reset to current day
+        addDataPoint(date, totalHoursInDay)
+        totalHoursInDay = hours + minutes / 60
         date = logDate
         month = logMonth
         year = logYear
-        if (logIndex === logs.length - 1) {
-          chartData.labels.unshift(
-            date.toLocaleDateString(undefined, {
-              month: 'short',
-              year: 'numeric',
-            })
-          )
-          chartData.datasets[0].data.unshift(totalTimeInDay)
-        }
+      }
+      // Push if last log in array
+      if (logIndex === logs.length - 1) {
+        addDataPoint(date, totalHoursInDay)
       }
     })
   }
@@ -77,7 +67,7 @@ const TimeHistoryChart = ({ logs }: SkillFrequencyChartProps) => {
     <div className="w-full flex justify-center">
       <div className="w-[99%] h-72">
         <Line
-          data={createChartDataFromLogs(logs)}
+          data={getChartData(logs)}
           options={{
             plugins: { legend: { display: false } },
             elements: {
