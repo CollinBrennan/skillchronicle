@@ -27,8 +27,8 @@ export const Home = () => {
 
   return (
     <div className="flex justify-center font-inter">
-      <div className="max-w-screen-xl mx-4">
-        <div className="flex flex-row gap-4 mt-16 mb-8">
+      <div className="max-w-screen-xl w-full mx-4">
+        <div className="flex flex-row gap-4 mt-16 mb-8 justify-center md:justify-start">
           <button
             onClick={() => setIsLogModalOpen(true)}
             className="bg-zinc-300 px-6 py-2 rounded"
@@ -42,11 +42,16 @@ export const Home = () => {
             Start skill timer
           </button>
         </div>
-        <div className="flex flex-col gap-16 pb-16">
-          <SkillFreqChart logs={logs as LogDocData[]} />
-          <SkillHistoryChart logs={logs as LogDocData[]} />
-          <LogTable logs={logs as LogDocData[]} />
-        </div>
+
+        {user && logs && logs.length > 0 ? (
+          <div className="flex flex-col gap-8 pb-16">
+            <SkillFreqChart logs={logs as LogDocData[]} />
+            <SkillHistoryChart logs={logs as LogDocData[]} />
+            <LogTable logs={logs as LogDocData[]} />
+          </div>
+        ) : (
+          <h1>Log a skill to get started!</h1>
+        )}
 
         <LogModal
           isOpen={isLogModalOpen}

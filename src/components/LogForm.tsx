@@ -86,21 +86,21 @@ export const LogForm = ({
       <div className="flex flex-row gap-2">
         <div className="flex flex-row border-2 border-black py-1 px-2">
           <input
-            className="w-12 focus:outline-none"
-            placeholder="0"
+            className="w-8 focus:outline-none"
+            placeholder="X"
             defaultValue={secondsFromTimer > 0 ? hours : undefined}
             {...register('hours')}
           />
-          <p>hours</p>
+          <p className="font-semibold">hours</p>
         </div>
         <div className="flex flex-row border-2 border-black py-1 px-2">
           <input
-            className="w-12 focus:outline-none"
-            placeholder="0"
+            className="w-8 focus:outline-none"
+            placeholder="X"
             defaultValue={secondsFromTimer > 0 ? minutes : undefined}
             {...register('minutes')}
           />
-          <p>minutes</p>
+          <p className="font-semibold">minutes</p>
         </div>
       </div>
       <p className="text-red-500">{errors.hours?.message}</p>
@@ -126,7 +126,7 @@ export const LogForm = ({
             className="bg-zinc-300 px-6 py-2 rounded"
             type="button"
           >
-            Sign in with Google
+            Sign in with Google to log
           </button>
         )}
       </div>
