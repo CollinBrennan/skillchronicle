@@ -4,7 +4,7 @@ import { Timestamp, addDoc, collection } from 'firebase/firestore'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { timeFromSeconds } from '../utils/time'
+import { timeFromSeconds } from '../utils/dateAndTime'
 import { LogDocData } from '../utils/types'
 
 type FormData = {

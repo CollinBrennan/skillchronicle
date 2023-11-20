@@ -43,9 +43,9 @@ export const Home = () => {
           </button>
         </div>
         <div className="flex flex-col gap-16 pb-16">
-          <SkillFrequencyChart logs={(logs as LogDocData[]) || []} />
-          <TimeHistoryChart logs={(logs as LogDocData[]) || []} />
-          <LogTable logs={(logs as LogDocData[]) || []} />
+          <SkillFrequencyChart logs={logs as LogDocData[]} />
+          <TimeHistoryChart logs={logs as LogDocData[]} />
+          <LogTable logs={logs as LogDocData[]} />
         </div>
 
         <LogModal

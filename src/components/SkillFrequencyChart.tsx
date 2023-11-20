@@ -2,7 +2,7 @@ import { Bar } from 'react-chartjs-2'
 import 'chart.js/auto'
 import { ChartData } from 'chart.js'
 import { LogDocData } from '../utils/types'
-import { timeFromSeconds } from '../utils/time'
+import { timeFromSeconds } from '../utils/dateAndTime'
 
 function createChartDataFromLogs(
   logs: LogDocData[] | undefined,
@@ -34,7 +34,7 @@ function createChartDataFromLogs(
 }
 
 type SkillFrequencyChartProps = {
-  logs: LogDocData[] | undefined
+  logs?: LogDocData[]
 }
 
 const SkillFrequencyChart = ({ logs }: SkillFrequencyChartProps) => {

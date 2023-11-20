@@ -1,7 +1,7 @@
 import { Dialog } from '@headlessui/react'
 import { CalendarIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { LogForm } from './LogForm'
-import { getCalendarDate } from '../utils/time'
+import { getCalendarDate } from '../utils/dateAndTime'
 
 type LogModalProps = {
   isOpen: boolean

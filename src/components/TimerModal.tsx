@@ -1,4 +1,4 @@
-import { timeFromSeconds } from '../utils/time'
+import { timeFromSeconds } from '../utils/dateAndTime'
 import { Dialog } from '@headlessui/react'
 import {
   PauseCircleIcon,

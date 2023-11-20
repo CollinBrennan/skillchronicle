@@ -1,9 +1,11 @@
 import { ChartData } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 import { LogDocData } from '../utils/types'
-import { timeFromSeconds } from '../utils/time'
+import { timeFromSeconds } from '../utils/dateAndTime'
 
-function createChartDataFromLogs(logs: LogDocData[]): ChartData<'line'> {
+function createChartDataFromLogs(
+  logs: LogDocData[] | undefined
+): ChartData<'line'> {
   const chartData = {
     labels: [] as string[],
     datasets: [
@@ -16,7 +18,7 @@ function createChartDataFromLogs(logs: LogDocData[]): ChartData<'line'> {
     ],
   }
 
-  if (logs.length > 0) {
+  if (logs && logs.length > 0) {
     var totalTimeInDay = 0
     var date = logs[0].createdAt.toDate()
     var month = date.getMonth()
@@ -67,7 +69,7 @@ function createChartDataFromLogs(logs: LogDocData[]): ChartData<'line'> {
 }
 
 type SkillFrequencyChartProps = {
-  logs: LogDocData[]
+  logs?: LogDocData[]
 }
 
 const TimeHistoryChart = ({ logs }: SkillFrequencyChartProps) => {
