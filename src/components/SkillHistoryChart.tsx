@@ -89,7 +89,7 @@ const TimeHistoryChart = ({ logs }: SkillFrequencyChartProps) => {
 
                   time: {
                     displayFormats: { month: !isViewAll ? 'MMMM' : "MMM 'YY" },
-                    tooltipFormat: 'MMMM',
+                    tooltipFormat: !isViewAll ? 'MMMM' : 'MMMM YYYY',
                     unit: 'month',
                     round: 'month',
                   },
