@@ -108,7 +108,7 @@ const TimerModal = ({
                 Start timer
               </button>
             ) : (
-              <div className="flex flex-row gap-8">
+              <div className="flex flex-row gap-4">
                 <button
                   onClick={endTimer}
                   className="bg-white border-2 border-neutral-700 px-6 py-2 flex gap-2 rounded"

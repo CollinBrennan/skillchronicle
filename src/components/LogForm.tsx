@@ -35,12 +35,14 @@ export const LogForm = ({
     skill: yup.string().required('Skill name required.'),
     hours: yup
       .number()
+      .transform((value, originalValue) => (originalValue === '' ? 0 : value))
       .typeError('Hours must be a number')
       .integer('Hours must be an integer')
       .min(0, 'Hours must be 0 or greater')
-      .max(99, 'Hours must be 99 or less'),
+      .max(9999, 'Hours must be 9999 or less'),
     minutes: yup
       .number()
+      .transform((value, originalValue) => (originalValue === '' ? 0 : value))
       .typeError('Minutes must be a number')
       .integer('Minutes must be an integer')
       .min(0, 'Minutes must be 0 or greater')
