@@ -7,12 +7,13 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { timeFromSeconds } from '../utils/dateAndTime'
 import { LogDocData } from '../utils/types'
 import { signInWithPopup } from 'firebase/auth'
+import { capitalize } from '../utils/strings'
 
 type FormData = {
   skill: string
-  hours?: number
-  minutes?: number
-  notes?: string
+  hours: number
+  minutes: number
+  notes: string
 }
 
 type LogFormProps = {
@@ -32,22 +33,24 @@ export const LogForm = ({
   }
 
   const schema = yup.object().shape({
-    skill: yup.string().required('Skill name required.'),
+    skill: yup.string().required('Skill name required.').trim(),
     hours: yup
       .number()
       .transform((value, originalValue) => (originalValue === '' ? 0 : value))
       .typeError('Hours must be a number')
-      .integer('Hours must be an integer')
+      .integer('Hours must be a whole number')
       .min(0, 'Hours must be 0 or greater')
-      .max(9999, 'Hours must be 9999 or less'),
+      .max(9999, 'Hours must be 9999 or less')
+      .required(),
     minutes: yup
       .number()
       .transform((value, originalValue) => (originalValue === '' ? 0 : value))
       .typeError('Minutes must be a number')
-      .integer('Minutes must be an integer')
+      .integer('Minutes must be a whole number')
       .min(0, 'Minutes must be 0 or greater')
-      .max(59, 'Minutes must be 59 or less'),
-    notes: yup.string(),
+      .max(59, 'Minutes must be 59 or less')
+      .required(),
+    notes: yup.string().ensure().trim(),
   })
 
   const {
@@ -61,8 +64,8 @@ export const LogForm = ({
   const handleLogSkill = async (data: FormData) => {
     if (user) {
       const logData: LogDocData = {
-        skill: data.skill,
-        notes: data.notes ? data.notes : '',
+        skill: capitalize(data.skill),
+        notes: data.notes,
         seconds:
           (data.hours ? data.hours * 3600 : 0) +
           (data.minutes ? data.minutes * 60 : 0),
