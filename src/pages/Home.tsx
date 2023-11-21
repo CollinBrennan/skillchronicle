@@ -26,7 +26,7 @@ export const Home = () => {
   const [logs] = useCollectionData(logsRefQuery)
 
   return (
-    <div className="flex flex-col items-center font-inter">
+    <div className="relative min-h-screen flex justify-center font-inter">
       <div className="max-w-screen-xl w-full mx-4">
         <div className="flex flex-row gap-4 mt-16 mb-8 justify-center md:justify-start">
           <button
@@ -67,12 +67,12 @@ export const Home = () => {
           openLogModal={() => setIsLogModalOpen(true)}
         />
       </div>
-      <div className="text-center text-sm text-gray-400">
+      <footer className="absolute bottom-0 left-0 text-center text-sm w-full text-gray-400">
         Made by{' '}
         <a className="text-scBlue underline" href="https://collinbrennan.dev/">
           Collin Brennan
         </a>
-      </div>
+      </footer>
     </div>
   )
 }
